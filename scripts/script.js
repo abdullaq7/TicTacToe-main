@@ -1,7 +1,6 @@
 window.addEventListener('DOMContentLoaded', () => {
         
     const tiles = Array.from(document.querySelectorAll('.tile'));
-    // const availableTiles = Array.from(document.querySelectorAll('.tile'))
 
     const playerDisplay = document.querySelector('.display-player');
     const resetButton = document.querySelector('#reset');
@@ -60,15 +59,15 @@ window.addEventListener('DOMContentLoaded', () => {
 
 // win display
 
-    function winner (e) {
-        switch(e){
+    function winner (event) {
+        switch(event){
             case o_win:
-                win.innerHTML = 'Player <span class="playerO">O</span> Won';
+                win.innerHTML = 'Player O Won';
                 score_O ++;
                 score2.textContent = score_O ;
                 break;
             case x_win:
-                win.innerHTML = 'Player <span class="playerX">X</span> Won';
+                win.innerHTML = 'Player X Won';
                 score_X ++;
                 score1.textContent = score_X  ;
                 break;
@@ -96,17 +95,6 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
 
-    // hover text test
-
-    // function hoverText(){
-
-    //     availableTiles.forEach(item=>{
-    //     item.classList.toggle('green')
-
-    // })
-    // }
-
-    
 
     // player change
 
@@ -125,7 +113,6 @@ window.addEventListener('DOMContentLoaded', () => {
     function tileClick (tile, index) {
         if(tileEmpty(tile) && isGameActive) {
             tile.innerText = currentPlayer;
-            // availableTiles.splice(event.target.dataset.id,1)
             tile.classList.add(`player${currentPlayer}`);
             updateBoard(index);
             gameWon();
@@ -152,11 +139,13 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+        // click 
+
     tiles.forEach( (tile, index) => {
         tile.addEventListener('click', () => tileClick(tile, index));
     });
 
-
+        // reset click
 
     resetButton.addEventListener('click', resetBoard);
 });
